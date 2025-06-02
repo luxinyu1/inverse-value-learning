@@ -43,7 +43,7 @@ bash ./scripts/convert_model_for_inference.sh
 To execute the zero-shot evaluation, run:
 
 ```
-bash ./scripts/tulu_eval_residual_1_1b.sh
+bash ./scripts/tulu_eval_residual_*.sh
 ```
 
 To execute the few-shot evaluation, you should first install the modified version of ```lm-eval```.
