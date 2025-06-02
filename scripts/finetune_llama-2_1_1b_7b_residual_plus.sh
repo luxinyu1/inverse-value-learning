@@ -1,0 +1,35 @@
+export OMP_NUM_THREADS=1
+
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 torchrun \
+    --nproc_per_node=8 --master_port=20001 ./src/ivl/train/train_sft_residual_plus.py \
+    --model_name_or_path ./pretrained_models/TinyLlama-1.1B-intermediate-step-1431k-3T \
+    --pretrained_model_name_or_path ./pretrained_models/Llama-2-7b-hf/ \
+    --data_path data/merged_en_zh-split.json \
+    --output_dir ./saved_models/llama-2_1_1b_7b_residual_plus_norm/ \
+    --template "llama-2" \
+    --per_device_train_batch_size 4 \
+    --per_device_eval_batch_size 4 \
+    --gradient_accumulation_steps 1 \
+    --num_train_epochs 3 \
+    --evaluation_strategy "steps" \
+    --eval_steps 1500 \
+    --save_strategy "epoch" \
+    --save_total_limit 3 \
+    --learning_rate 1e-4 \
+    --weight_decay 0.01 \
+    --warmup_ratio 0.01 \
+    --lr_scheduler_type "cosine" \
+    --logging_steps 1 \
+    --model_max_length 4096 \
+    --gradient_checkpointing True \
+    --metric_for_best_model "loss" \
+    --load_best_model_at_end False \
+    --report_to "tensorboard" \
+    --logging_dir ./logs/llama-2_1_1b_7b_residual_plus_norm/ \
+    --bf16 True \
+    --tf32 True \
+    --log_level "info" \
+    --ddp_timeout 7200 \
+    --fsdp "full_shard auto_wrap" \
+    --use_flash_attn True \
+    --seed 42 \

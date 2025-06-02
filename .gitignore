@@ -1,0 +1,66 @@
+/lightning_logs
+/model
+/models
+/*log
+/thirdparty
+/dist
+
+# configs
+configs/*.py
+configs/eval_dev.yaml
+
+# data
+data/*
+!data/ultra_binary.jsonl
+!data/dummy_*
+!data/eval
+
+.lock
+# mac
+.DS_Store
+
+# env
+.pytest_cache
+.venv*
+venv
+.env
+*.pyc
+*.swp
+*.egg-info
+__pycache__
+.DS_Store
+.vscode
+*.log
+*.out
+
+_*
+flagged/
+
+# models
+/models
+/pretrained_models
+/runs
+/saved_models
+/checkpoints
+/hf_models
+
+# others
+**/*.log
+/wandb
+/.cache
+/caches
+/outputs
+/build
+/results
+/my_scripts
+/my_configs
+/my_data
+
+/opencompass
+ip.sh
+
+*.tar.gz
+
+docs/_*
+
+!__init__.py
